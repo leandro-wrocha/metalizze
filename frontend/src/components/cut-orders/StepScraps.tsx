@@ -133,12 +133,12 @@ export function StepScraps({
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Selecione um cliente" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white">
                     <SelectGroup>
                       <SelectLabel>Cliente</SelectLabel>
                       <SelectItem value="none">Estoque Próprio</SelectItem>
                       {clients.map((c) => (
-                        <SelectItem key={c.id} value={c.id}>
+                        <SelectItem key={c.id} value={c.id} className="hover:cursor-pointer">
                           {c.name}
                         </SelectItem>
                       ))}

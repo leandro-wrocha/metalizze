@@ -24,7 +24,7 @@ export function Stepper({ currentStep }: StepperProps) {
                 transition-all duration-300 border-2
                 ${index <= currentStep
                   ? "bg-zinc-900 border-zinc-900 text-white"
-                  : "bg-white border-zinc-300 text-zinc-400"
+                  : "bg-white border-zinc-300 text-zinc-500"
                 }
               `}
             >
@@ -36,7 +36,7 @@ export function Stepper({ currentStep }: StepperProps) {
             </div>
             <span
               className={`text-xs font-medium transition-colors duration-300 ${
-                index <= currentStep ? "text-zinc-900" : "text-zinc-400"
+                index <= currentStep ? "text-zinc-900" : "text-zinc-500"
               }`}
             >
               {step.label}

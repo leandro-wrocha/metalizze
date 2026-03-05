@@ -68,7 +68,7 @@ export function StepSheetSelection({
             placeholder="Descreva o motivo do corte..."
             value={description}
             onChange={(e) => onDescriptionChange(e.target.value)}
-            className="min-h-20 resize-none"
+            className="min-h-20 resize-none bg-white"
           />
         </div>
       </div>

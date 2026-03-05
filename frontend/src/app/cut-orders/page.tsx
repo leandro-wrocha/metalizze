@@ -166,51 +166,59 @@ function CutOrdersWizard() {
   }
 
   return (
-    <>
-      <Stepper currentStep={currentStep} />
+    <div className="flex flex-col flex-1 min-h-0">
+      <div className="shrink-0">
+        <Stepper currentStep={currentStep} />
+      </div>
 
       {/* Card with carousel slides */}
-      <Card className="overflow-hidden border-zinc-200 shadow-sm bg-white mt-8">
-        <CardContent className="p-0">
-          <div className="overflow-hidden">
+      <Card className="flex flex-col flex-1 min-h-0 overflow-hidden border-zinc-200 shadow-sm bg-white mt-8">
+        <CardContent className="flex-1 min-h-0 p-0 flex flex-col">
+          <div className="flex-1 min-h-0 overflow-hidden relative">
             <div
-              className="flex transition-transform duration-500 ease-in-out"
+              className="flex h-full absolute inset-0 transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentStep * 100}%)` }}
             >
-              <StepSheetSelection
-                sheets={sheets}
-                sheetId={sheetId}
-                selectedSheet={selectedSheet}
-                quantity={quantity}
-                description={description}
-                onSelectSheet={handleSelectSheet}
-                onQuantityChange={setQuantity}
-                onDescriptionChange={setDescription}
-              />
+              <div className="w-full shrink-0 h-full overflow-y-auto">
+                <StepSheetSelection
+                  sheets={sheets}
+                  sheetId={sheetId}
+                  selectedSheet={selectedSheet}
+                  quantity={quantity}
+                  description={description}
+                  onSelectSheet={handleSelectSheet}
+                  onQuantityChange={setQuantity}
+                  onDescriptionChange={setDescription}
+                />
+              </div>
 
-              <StepScraps
-                hasScraps={hasScraps}
-                scraps={scraps}
-                clients={clients}
-                onToggleScraps={() => setHasScraps(!hasScraps)}
-                onAddScrap={addScrap}
-                onRemoveScrap={removeScrap}
-                onUpdateScrap={updateScrap}
-              />
+              <div className="w-full shrink-0 h-full overflow-y-auto">
+                <StepScraps
+                  hasScraps={hasScraps}
+                  scraps={scraps}
+                  clients={clients}
+                  onToggleScraps={() => setHasScraps(!hasScraps)}
+                  onAddScrap={addScrap}
+                  onRemoveScrap={removeScrap}
+                  onUpdateScrap={updateScrap}
+                />
+              </div>
 
-              <StepSummary
-                selectedSheet={selectedSheet}
-                quantity={quantity}
-                description={description}
-                hasScraps={hasScraps}
-                scraps={scraps}
-                clients={clients}
-              />
+              <div className="w-full shrink-0 h-full overflow-y-auto">
+                <StepSummary
+                  selectedSheet={selectedSheet}
+                  quantity={quantity}
+                  description={description}
+                  hasScraps={hasScraps}
+                  scraps={scraps}
+                  clients={clients}
+                />
+              </div>
             </div>
           </div>
 
           {/* Footer with navigation buttons */}
-          <div className="flex items-center justify-between p-6 pt-0">
+          <div className="shrink-0 flex items-center justify-between p-6 pt-4 border-t mt-auto">
             <Button
               type="button"
               variant="outline"
@@ -254,15 +262,15 @@ function CutOrdersWizard() {
           </div>
         </CardContent>
       </Card>
-    </>
+    </div>
   )
 }
 
 export default function CutOrdersPage() {
   return (
-    <div className="p-8 max-w-3xl mx-auto space-y-2">
+    <div className="flex flex-col h-full p-8 max-w-3xl mx-auto space-y-2">
       {/* Page Header */}
-      <div>
+      <div className="shrink-0 mb-4">
         <h1 className="text-3xl font-bold tracking-tight text-zinc-950">Operação de Corte</h1>
         <p className="text-muted-foreground text-sm font-medium mt-1">
           Registre uma ordem de corte ou utilização de um material.
@@ -270,7 +278,7 @@ export default function CutOrdersPage() {
       </div>
 
       <Suspense fallback={
-        <div className="flex items-center justify-center p-12">
+        <div className="flex items-center justify-center p-12 shrink-0">
           <Loader2 className="w-8 h-8 animate-spin text-zinc-400" />
         </div>
       }>

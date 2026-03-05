@@ -36,21 +36,18 @@ export default function ScrapsPage() {
   }, [page])
 
   return (
-    <div className='p-8 w-full h-full mx-auto flex flex-col'>
-      <div className='flex items-center gap-3 shrink-0 mb-6'>
-        <div className="p-3 bg-amber-100 text-amber-600 rounded-lg">
-          <BoxSelect className="w-6 h-6" />
-        </div>
+    <div className='p-6 md:p-10 w-full h-full mx-auto flex flex-col animate-in fade-in zoom-in-95 duration-700'>
+      <div className='flex items-center gap-4 shrink-0 mb-6'>
         <div>
-          <h1 className='text-3xl font-bold tracking-tight'>Retalhos</h1>
-          <p className='text-muted-foreground text-sm mt-1'>Visualize e gerencie os retalhos gerados pelas ordens de corte.</p>
+          <h1 className='text-4xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-zinc-900 to-zinc-500 dark:from-white dark:to-zinc-400 pb-1'>Retalhos</h1>
+          <p className='text-zinc-500 dark:text-zinc-400 text-sm font-medium mt-1'>Visualize e gerencie os retalhos gerados pelas ordens de corte.</p>
         </div>
       </div>
 
-      <div className='border rounded-md overflow-hidden flex-1 min-h-0 flex flex-col'>
-        <div className="overflow-auto flex-1 relative">
+      <div className='glass-card overflow-hidden flex-1 min-h-0 flex flex-col p-1'>
+        <div className="overflow-auto hide-v-scroll flex-1 relative rounded-2xl">
           <Table className="min-w-[800px]">
-            <TableHeader className="sticky top-0 z-10 bg-zinc-50 shadow-sm">
+            <TableHeader className="sticky top-0 z-10 bg-zinc-50/80 backdrop-blur-md dark:bg-zinc-900/80">
               <TableRow>
                 <TableHead>SKU do Retalho</TableHead>
                 <TableHead>Cliente / Documento</TableHead>
@@ -73,24 +70,24 @@ export default function ScrapsPage() {
                 </TableRow>
               ): (
                 scraps.map((scrap) => (
-                  <TableRow key={scrap.id}>
-                    <TableCell className='font-medium' title={scrap.sku}>
+                  <TableRow key={scrap.id} className="hover:bg-black/5 dark:hover:bg-white/5 transition-colors border-b border-white/20 dark:border-white/5">
+                    <TableCell className='font-semibold text-zinc-900 dark:text-zinc-100' title={scrap.sku}>
                       {scrap.sku}
                     </TableCell>
                     <TableCell>
                       {scrap.client ? (
                         <div className='flex flex-col'>
-                          <span className='font-medium text-zinc-900 truncate max-w-[200px]'>{scrap.client.name}</span>
-                          <span className='text-sm text-zinc-500'>{formatDocument(scrap.client.document)}</span>
+                          <span className='font-medium text-zinc-900 dark:text-zinc-100 truncate max-w-[200px]'>{scrap.client.name}</span>
+                          <span className='text-sm text-zinc-500 dark:text-zinc-400'>{formatDocument(scrap.client.document)}</span>
                         </div>
                       ) : (
                         <span className='text-zinc-500 italic text-sm'>Estoque Próprio</span>
                       )}
                     </TableCell>
-                    <TableCell className='text-muted-foreground whitespace-nowrap'>
+                    <TableCell className='text-zinc-500 dark:text-zinc-400 whitespace-nowrap'>
                       {formatDate(scrap.createdAt)}
                     </TableCell>
-                    <TableCell className='font-bold text-amber-600 whitespace-nowrap'>{scrap.quantity}</TableCell>
+                    <TableCell className='font-bold text-amber-600 dark:text-amber-400 whitespace-nowrap'>{scrap.quantity}</TableCell>
                   </TableRow>
                 ))
               )}

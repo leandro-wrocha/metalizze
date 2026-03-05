@@ -23,19 +23,21 @@ const productivityData = [
 
 export default function ReportsPage() {
   return (
-    <div className="p-8 w-full mx-auto space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Relatórios Gerenciais</h1>
-        <p className="text-muted-foreground text-sm mt-1">
+    <div className="flex flex-col h-full p-6 md:p-10 w-full mx-auto space-y-6 animate-in fade-in zoom-in-95 duration-700">
+      <div className="shrink-0 mb-2">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-zinc-900 to-zinc-500 dark:from-white dark:to-zinc-400 pb-1">
+          Relatórios Gerenciais
+        </h1>
+        <p className="text-zinc-500 dark:text-zinc-400 text-base font-medium mt-2">
           Acompanhe os indicadores de produção, uso de chapas e eficiência.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="shrink-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Total de Ordens (Mês)</CardDescription>
-            <CardTitle className="text-4xl">1,248</CardTitle>
+            <CardTitle className="text-4xl bg-clip-text text-transparent bg-gradient-to-br from-blue-500 to-indigo-600">1,248</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-green-600 font-medium">+12% comparado ao mês passado</div>
@@ -44,7 +46,7 @@ export default function ReportsPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Chapas Consumidas</CardDescription>
-            <CardTitle className="text-4xl">3,092</CardTitle>
+            <CardTitle className="text-4xl bg-clip-text text-transparent bg-gradient-to-br from-red-500 to-rose-600">3,092</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-red-600 font-medium">-4% comparado ao mês passado</div>
@@ -53,7 +55,7 @@ export default function ReportsPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Retalhos Gerados</CardDescription>
-            <CardTitle className="text-4xl">423</CardTitle>
+            <CardTitle className="text-4xl bg-clip-text text-transparent bg-gradient-to-br from-amber-500 to-orange-600">423</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-green-600 font-medium">+2% comparado ao mês passado</div>
@@ -62,7 +64,7 @@ export default function ReportsPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Clientes Ativos</CardDescription>
-            <CardTitle className="text-4xl">142</CardTitle>
+            <CardTitle className="text-4xl bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-indigo-600">142</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-muted-foreground">Estável desde o último trimestre</div>
@@ -70,15 +72,15 @@ export default function ReportsPage() {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-        <Card>
-          <CardHeader>
+      <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+        <Card className="flex flex-col h-full overflow-hidden">
+          <CardHeader className="shrink-0">
             <CardTitle>Uso de Materiais e Retalhos</CardTitle>
             <CardDescription>
               Comparativo entre quantidade de chapas utilizadas e retalhos gerados.
             </CardDescription>
           </CardHeader>
-          <CardContent className="h-[300px]">
+          <CardContent className="flex-1 min-h-0">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={materialUsageData} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e4e4e7" />
@@ -93,14 +95,14 @@ export default function ReportsPage() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
+        <Card className="flex flex-col h-full overflow-hidden">
+          <CardHeader className="shrink-0">
             <CardTitle>Produtividade da Semana</CardTitle>
             <CardDescription>
               Volume de ordens de corte processadas por dia na última semana.
             </CardDescription>
           </CardHeader>
-          <CardContent className="h-[300px]">
+          <CardContent className="flex-1 min-h-0">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={productivityData} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e4e4e7" />
