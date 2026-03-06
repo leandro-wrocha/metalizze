@@ -29,17 +29,22 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-zinc-100">
-            <div className="w-full max-w-md px-4">
+        <div className="w-full h-full flex items-center justify-center mesh-gradient-bg relative">
+            {/* Subtle overlay to soften the mesh background for readability */}
+            <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px]"></div>
+
+            <div className="w-full max-w-md px-4 z-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
                 <div className="flex items-center justify-center gap-3 mb-8">
-                    <div className="w-10 h-10 bg-zinc-900 rounded-lg"></div>
-                    <h1 className="text-3xl font-bold tracking-tight text-zinc-900">Metalizze</h1>
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg flex items-center justify-center">
+                        <span className="text-white font-bold text-2xl">M</span>
+                    </div>
+                    <h1 className="text-4xl font-extrabold tracking-tight text-zinc-900 drop-shadow-sm">Metalizze</h1>
                 </div>
 
-                <Card className="shadow-lg border-zinc-200">
-                    <CardHeader className="text-center pb-2">
-                        <CardTitle className="text-xl font-semibold text-zinc-800">Entrar no Sistema</CardTitle>
-                        <p className="text-sm text-zinc-500 mt-1">
+                <Card className="shadow-2xl border-white/40 bg-white/60 backdrop-blur-md rounded-2xl overflow-hidden">
+                    <CardHeader className="text-center pb-2 bg-white/40 border-b border-white/30">
+                        <CardTitle className="text-xl font-bold text-zinc-900">Entrar no Sistema</CardTitle>
+                        <p className="text-sm text-zinc-600 mt-1 font-medium">
                             Acesse com suas credenciais fornecidas pelo administrador.
                         </p>
                     </CardHeader>
@@ -54,7 +59,7 @@ export default function LoginPage() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
-                                    className="border-zinc-300 focus:border-zinc-500"
+                                    className="border-white/50 bg-white/50 focus:bg-white focus:border-blue-500 focus:ring-blue-500/20 shadow-sm transition-all"
                                 />
                             </div>
 
@@ -67,7 +72,7 @@ export default function LoginPage() {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
-                                    className="border-zinc-300 focus:border-zinc-500"
+                                    className="border-white/50 bg-white/50 focus:bg-white focus:border-blue-500 focus:ring-blue-500/20 shadow-sm transition-all"
                                 />
                             </div>
 
@@ -79,7 +84,7 @@ export default function LoginPage() {
 
                             <Button
                                 type="submit"
-                                className="w-full bg-zinc-900 hover:bg-zinc-800 text-white cursor-pointer"
+                                className="w-full bg-gradient-to-r from-zinc-900 to-zinc-800 hover:from-zinc-800 hover:to-zinc-700 text-white shadow-md hover:shadow-lg transition-all"
                                 disabled={isLoading}
                             >
                                 {isLoading ? 'Entrando...' : 'Entrar'}
@@ -88,7 +93,7 @@ export default function LoginPage() {
                     </CardContent>
                 </Card>
 
-                <p className="text-xs text-zinc-400 text-center mt-6">
+                <p className="text-xs text-zinc-600/80 font-medium text-center mt-6">
                     Metalizze ERP &copy; {new Date().getFullYear()}
                 </p>
             </div>

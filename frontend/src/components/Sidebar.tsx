@@ -14,7 +14,8 @@ import {
   Scissors,
   Settings,
   Users,
-  UserCog
+  UserCog,
+  LogOut
 } from "lucide-react"
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -36,7 +37,7 @@ const menuItems = [
 
 function SidebarLinks({ isMobile = false }: { isMobile?: boolean }) {
   const pathname = usePathname()
-  const { user, logout } = useAuth()
+  const { user } = useAuth()
 
   if (!user) return null
 
@@ -107,7 +108,7 @@ function SidebarLinks({ isMobile = false }: { isMobile?: boolean }) {
 }
 
 function UserProfile({ isMobile = false }: { isMobile?: boolean }) {
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
 
   if (!user) return null;
 
@@ -119,16 +120,35 @@ function UserProfile({ isMobile = false }: { isMobile?: boolean }) {
     .toUpperCase()
 
   return (
-    <div className={cn("p-4 border-t border-white/30", isMobile ? "px-0" : "")}>
+    <div className={cn("p-4 border-t border-white/30 flex items-center justify-between group/profile transition-colors hover:bg-black/5 dark:hover:bg-white/5", isMobile ? "px-0" : "")}>
       <div className={cn("flex items-center gap-3 py-2", isMobile ? "justify-start" : "justify-center lg:justify-start lg:px-3")}>
         <div className="w-9 h-9 shrink-0 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md border border-white/20">
           <span className="text-sm font-bold text-white">{initials}</span>
         </div>
         <div className={cn("flex-col", isMobile ? "flex" : "hidden lg:flex")}>
-          <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate max-w-[150px]">{user.name}</p>
-          <p className="text-xs text-zinc-600 dark:text-zinc-400 truncate max-w-[150px]">{user.email}</p>
+          <p className="text-sm font-semibold text-zinc-900 dark:text-white truncate max-w-[120px]">{user.name}</p>
+          <p className="text-xs text-zinc-600 dark:text-zinc-400 truncate max-w-[120px]">{user.email}</p>
         </div>
       </div>
+      {(isMobile || !isMobile && true) && (
+        <TooltipProvider delayDuration={0}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={logout}
+                className={cn("text-zinc-500 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors", isMobile ? "flex" : "hidden lg:flex opacity-0 group-hover/profile:opacity-100")}
+              >
+                <LogOut className="w-4 h-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="top">
+              Sair
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      )}
     </div>
   )
 }
